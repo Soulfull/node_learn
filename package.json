@@ -1,0 +1,17 @@
+{
+  "name": "node-learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^7.0.3",
+    "chokidar": "^0.12.5",
+    "mime": "^1.2.11",
+    "socket.io": "^1.2.1"
+  }
+}
