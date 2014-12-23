@@ -4,18 +4,30 @@ var chokidar = require('chokidar');
 var url = require('url');
 var mime = require('mime');
 var path = require('path');
-
+var less = require('less');
 
 var server = http.createServer(function(req, res) {
+	
+	var url = req.url;
+	if (url !== '/lib/liveReload.js') {
+		if (url === '/') {
+			url = '/site/index.html';
+		} else {
+			url = '/site' + url;
+		}
+	}
 
-	var filepath = path.join(__dirname, 'site', req.url);
+	var filepath = path.join(__dirname, '/', url);
+
 
 	fs.readFile(filepath, function(err, data) {
+
 		if (err) {
+			console.log(err);
 			res.writeHead(404, {'Content-type' : 'text/html'});
 			res.write('File is not found, sorry!');
 		} else {
-			var type = mime.lookup(filepath)
+			var type = mime.lookup(filepath);
 			res.writeHead(200, {'Content-type' : type});
 			res.write(data);
 		}
@@ -26,11 +38,11 @@ var server = http.createServer(function(req, res) {
 
 var io = require('socket.io').listen(server);
 
-var reload = function() {
+var reload = function () {
 	io.emit('reload');
 }
 
-server.listen(80);
+server.listen(3000);
 
 // watcher
 
@@ -41,5 +53,5 @@ watcher.on('change', function (path) {
 	reload();
 });
 
-console.log('Server is running on localhost:80');
+console.log('Server is running on localhost:3000');
 

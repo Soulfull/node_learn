@@ -11,6 +11,7 @@
   "dependencies": {
     "browserify": "^7.0.3",
     "chokidar": "^0.12.5",
+    "less": "^2.1.2",
     "mime": "^1.2.11",
     "socket.io": "^1.2.1"
   }
