@@ -7,12 +7,13 @@ var path = require('path');
 var less = require('less');
 
 var server = http.createServer(function(req, res) {
-	
+
 	var url = req.url;
-	if (url !== '/lib/liveReload.js') {
+
+	if (url !== '/lib/livereload.js') {
 		if (url === '/') {
 			url = '/site/index.html';
-		} else {
+		} else if (url.indexOf('/bower_components') !== 0) {
 			url = '/site' + url;
 		}
 	}
